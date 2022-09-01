@@ -18,7 +18,7 @@ public class Q160 {
     headB.next = head3;
     System.out.println(getIntersectionNode1(headA, headB).val);
     System.out.println(getIntersectionNode2(headA, headB).val);
-    // System.out.println(getIntersectionNode3(headA,headB));
+    System.out.println(getIntersectionNode3(headA, headB).val);
   }
 
   public static ListNode getIntersectionNode1(ListNode headA, ListNode headB) {
