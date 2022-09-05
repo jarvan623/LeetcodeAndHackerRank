@@ -11,7 +11,7 @@ public class Q239 {
   https://leetcode.cn/problems/sliding-window-maximum*/
   public static void main(String[] args) {
     int[] nums = new int[] {1, 3, -1, -3, 5, 3, 6, 7};
-    System.out.println(Arrays.toString(maxSlidingWindow2(nums, 3)));
+    System.out.println(Arrays.toString(maxSlidingWindow3(nums, 3)));
   }
 
   public static int[] maxSlidingWindow1(int[] nums, int k) {
@@ -48,6 +48,30 @@ public class Q239 {
         window.push(nums[i]);
         answer[i - k + 1] = window.max();
         window.pop(nums[i - k + 1]);
+      }
+    }
+    return answer;
+  }
+
+  public static int[] maxSlidingWindow3(int[] nums, int k) {
+    // monotonic queue original
+    LinkedList<Integer> mq = new LinkedList<>();
+    int[] answer = new int[nums.length - k + 1];
+    for (int i = 0; i < nums.length; i++) {
+      if (i > k - 1 && mq.getFirst() == nums[i - k]) {
+        // only i after k-1 needs to be polled and it has to be the first(biggest) element
+        // otherwise it is not in the queue
+        mq.pollFirst();
+      }
+      while (!mq.isEmpty() && mq.getLast() < nums[i]) {
+        // any before&&smaller elements would be poll
+        mq.pollLast();
+      }
+      // all before&&smaller elements has been polled, then add current element
+      mq.addLast(nums[i]);
+      if (i >= k - 1) {
+        // get current biggest element and record it to answer
+        answer[i - k + 1] = mq.getFirst();
       }
     }
     return answer;
