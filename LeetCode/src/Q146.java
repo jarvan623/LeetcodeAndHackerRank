@@ -51,9 +51,9 @@ class LRUCache1 {
     } else {
       // if not exists, firstly check the size
       if (cap == map.size()) {
-        // remove the first(leastFreq) element
-        int leastFreqKey = map.keySet().iterator().next();
-        map.remove(leastFreqKey);
+        // remove the first(leastRecent) element
+        int leastRecentKey = map.keySet().iterator().next();
+        map.remove(leastRecentKey);
       }
       map.put(key, value);
     }
