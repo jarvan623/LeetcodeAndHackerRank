@@ -8,6 +8,10 @@ public class TreeNode {
   public static TreeNode makeTree(int[] nodes) {
     TreeNode[] tree = new TreeNode[nodes.length];
     for (int i = nodes.length - 1; i >= 0; i--) {
+      if(nodes[i]==-1){
+        tree[i] = null;
+        continue;
+      }
       tree[i] = new TreeNode(nodes[i]);
       if (i * 2 + 1 < nodes.length) {
         tree[i].left = tree[i * 2 + 1];
@@ -29,7 +33,7 @@ public class TreeNode {
 
   public static String toString(TreeNode root) {
     if (root == null) {
-      return "";
+      return " -1";
     }
     StringBuilder sb = new StringBuilder();
     sb.append(" ");
