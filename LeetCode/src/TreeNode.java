@@ -6,9 +6,11 @@ public class TreeNode {
   TreeNode() {}
 
   public static TreeNode makeTree(int[] nodes) {
+    // input has to be level-traversal of a tree and each level has 2^(n-1) element
+    // including every null nodes. Even in level 4, there could be 7 null(-1) and only one not null
     TreeNode[] tree = new TreeNode[nodes.length];
     for (int i = nodes.length - 1; i >= 0; i--) {
-      if(nodes[i]==-1){
+      if (nodes[i] == -1) {
         tree[i] = null;
         continue;
       }
